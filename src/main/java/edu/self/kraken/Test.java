@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.self.kraken.model.AskPrice;
 import edu.self.kraken.model.AssetTickerInfo;
+import edu.self.kraken.model.AssetTickerInfoDetail;
 import edu.self.kraken.model.BidPrice;
 import edu.self.kraken.model.High;
 import edu.self.kraken.model.LastTradeClosed;
@@ -99,15 +100,18 @@ public class Test {
 
 		AssetTickerInfo assetTickerInfo = new AssetTickerInfo();
 		assetTickerInfo.setPair("XBTUSDT");
-		assetTickerInfo.setA(a);
-		assetTickerInfo.setB(b);
-		assetTickerInfo.setC(c);
-		assetTickerInfo.setV(v);
-		assetTickerInfo.setP(p);
-		assetTickerInfo.setT(t);
-		assetTickerInfo.setL(l);
-		assetTickerInfo.setH(h);
-		assetTickerInfo.setO(o);
+
+		AssetTickerInfoDetail assetTickerInfoDetail = new AssetTickerInfoDetail();
+		assetTickerInfoDetail.setA(a);
+		assetTickerInfoDetail.setB(b);
+		assetTickerInfoDetail.setC(c);
+		assetTickerInfoDetail.setV(v);
+		assetTickerInfoDetail.setP(p);
+		assetTickerInfoDetail.setT(t);
+		assetTickerInfoDetail.setL(l);
+		assetTickerInfoDetail.setH(h);
+		assetTickerInfoDetail.setO(o);
+		assetTickerInfo.setAssetTickerInfoDetail(assetTickerInfoDetail);
 		System.out.println(assetTickerInfo);
 
 		String askPriceJson = jsonb.toJson(askPrice);
@@ -142,6 +146,12 @@ public class Test {
 
 		String assetTickerInfoJson = jsonb.toJson(assetTickerInfo);
 		System.out.println(assetTickerInfoJson);
+
+		String newAssetTickerInfoJson = "{\"pair\":\"XBTUSDT\",\"assetTickerInfoDetail\":{\"a\":[\"44218.40000\",\"2\",\"2.000\"],\"b\":[\"44218.30000\",\"1\",\"1.000\"],\"c\":[\"44218.30000\",\"0.00014115\"],\"v\":[\"42.22801379\",\"169.26233669\"],\"p\":[\"44071.72980\",\"44154.79157\"],\"t\":[737,2765],\"l\":[\"43687.40000\",\"43687.40000\"],\"h\":[\"44552.60000\",\"44722.60000\"],\"o\":\"44552.50000\"}}";
+		System.out.println(newAssetTickerInfoJson);
+
+		AssetTickerInfo azz = jsonb.fromJson(newAssetTickerInfoJson, AssetTickerInfo.class);
+		System.out.println(azz);
 
 	}
 
